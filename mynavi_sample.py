@@ -60,7 +60,7 @@ def main():
     # 次のページがなくなるまでループ
     while True :
         # 開始ログ出力
-        logging.info("処理開始：" + str(page_count) + "ページ目")
+        logging.info("処理開始：{}ページ目".format(page_count))
         # 会社名、キャッチコピー、雇用形態を取得
         name_list=driver.find_elements_by_class_name("cassetteRecruit__name")
         copy_list=driver.find_elements_by_class_name("cassetteRecruit__copy")
@@ -69,7 +69,7 @@ def main():
         print("{},{},{}".format(len(copy_list),len(status_list),len(name_list)))
         for name,copy,status in zip(name_list,copy_list,status_list):
             # 開始ログ出力
-            logging.info("処理開始：" + str(count) + "件目")
+            logging.info("処理開始：{}件目".format(count))
             ### 課題6：エラー時にスキップして処理を継続させる
             # トランザクション開始
             try :
@@ -80,7 +80,7 @@ def main():
                 # 取得結果をリストに格納
                 result_list.append([name.text,copy.text,status.text])
                 # 終了ログ出力
-                logging.info("正常終了：" + str(count) + "件目")
+                logging.info("正常終了：{}件目".format(count))
             except Exception as e:
                 # エラーログ出力
                 logging.error("エラーが発生しました：" + str(e))
@@ -91,7 +91,7 @@ def main():
                 count += 1
             
         # 終了ログ出力
-        logging.info("正常終了：" + str(page_count) + "ページ目")
+        logging.info("正常終了：{}ページ目".format(page_count))
         ### 課題3：２ページ目以降の情報も含めて取得
         # トランザクション開始（※次のページの存在確認）
         try :
